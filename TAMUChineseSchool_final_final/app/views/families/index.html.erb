@@ -1,0 +1,54 @@
+
+<div class="container">
+  <div class="row">
+
+<h1>Listing all children</h1>
+
+
+
+
+    <div class="row">
+
+      <br><br>
+      <table class="table">
+    <tr>
+    <th>Name</th>
+    <th>Chinese Name</th>
+    <th>Gender</th>
+    <th>Course Taking</th>
+
+
+
+    </tr>
+
+  <% if @children != nil %>
+    <% @children.each do |child| %>
+          <tr>
+            <td><%= child.name %><%= link_to 'Delete', family_path(child),
+                                             method: :delete, data: { confirm: 'Are you sure to delete?'}%></td>
+            <td><%= child.name_chn %></td>
+            <td><%= child.gender %></td>
+
+            <% @courses=child.courses.map{|r| [r.name,r.id] }%>
+            <% if @courses != nil %>
+                <% @courses.each do |course| %>
+                <td><%= course.first %> <%= link_to 'Drop', taking_course_path(course.second),
+                                              method: :delete, data: { confirm: 'Are you sure to drop '+course.first+'?'}%></td>
+                <% end %>
+            <% end %>
+
+
+
+
+
+
+        </tr>
+    <% end %>
+  <% end %>
+
+      </table>
+      <%= link_to 'Add Child', new_family_path %>&nbsp;&nbsp;&nbsp;  &nbsp;<%= link_to 'Course Registration', new_taking_course_path%>
+      </div>
+  </div>
+</div>
+

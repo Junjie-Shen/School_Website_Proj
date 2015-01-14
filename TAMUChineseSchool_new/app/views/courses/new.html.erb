@@ -1,0 +1,54 @@
+
+
+<%= form_for :course, url: courses_path do |f| %>
+    <table>
+      <tr>
+        <td> <%= f.label :year %></td>
+        <td><%= f.text_field :year %></td>
+      </tr>
+
+      <tr>
+        <td><%= f.label :semester %></td>
+        <td><%= f.select :semester, ['Spring', 'Fall'] %></td>
+
+      </tr>
+
+      <tr>
+        <td><%= f.label :name %></td>
+        <td><%= f.text_area :name %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :class_room %></td>
+        <td><%= f.text_area :class_room %></td>
+      </tr>
+
+      <tr>
+        <td><%= f.label :time %></td>
+        <td>
+          <%= time_select("ar", "we", prompt: {hour: 'Choose hour', minute: 'Choose minute', second: 'Choose seconds'}) %> --
+          <%= time_select("article", "written_on", prompt: {hour: 'Choose hour', minute: 'Choose minute', second: 'Choose seconds'}) %></td>
+      </tr>
+
+      <tr>
+        <td><%= f.label :textbook %></td>
+        <td><%= f.text_field :textbook %></td>
+      </tr>
+
+      <tr>
+        <td><%= f.label :teacher %></td>
+
+        <td> <%= f.select :teacher_id, @teachers.map {|r| [r.fullname,r.id] } %></td>
+      </tr>
+
+      <tr>
+        <td><%= f.label :course_discription %></td>
+        <td><%= f.text_area :course_discription %></td>
+      </tr>
+
+    </table>
+
+    <p>
+      <%= f.submit value="Add Course" %>
+    </p>
+
+<% end %>
